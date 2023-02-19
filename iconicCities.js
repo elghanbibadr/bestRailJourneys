@@ -2,7 +2,7 @@
 const slideshow_topics_url = 'https://vs.contentportal.link/items/slideshow_topics';
 const slideshow_slides_url = 'https://vs.contentportal.link/items/slideshow_slides/';
 const imagesUrl='https://vs.contentportal.link/assets/'
-const slideOne = document.querySelector('.slide1');
+const slideOne = document.querySelector('.slide2');
 const slidesContainer=document.querySelector('.slides')
 
 
@@ -43,27 +43,25 @@ const createSlideShow = async () => {
 const slideForTheCurrentSlidShow = slideShowSlides.filter(element => slideshow_slides.includes(element.id))
    slideForTheCurrentSlidShow.forEach((element,index) => { 
     if (index===0) {
-        slideOne.style.display='none'
-        slideOne.innerHTML=`
+        slideOne.id=element.id
+        console.log(slideOne)
+        slideOne.innerHTML=`<div class='createdSlide'>
         <p >${element.content_text}</p>
-      <img  src=${imagesUrl+element.image}>     
-       `
+        <img  src=${imagesUrl+element.image}>  
+        </div>   
+        `
        return
     }
-    // iterat over the slideShowSlides and map their data to a slider section
-    //   const currentSlide=document.getElementById(element.id)
-    //   currentSlide.innerHTML=`
-    //     <p >${element.content_text}</p>
-    //   <img  src=${imagesUrl+element.image}>     
-    //    `;
+   
     const addedSlide=document.createElement('section');
-    addedSlide.innerHTML=`
+    addedSlide.id=element.id
+    addedSlide.innerHTML=`<div class='createdSlide'>
          <p >${element.content_text}</p>
-       <img  src=${imagesUrl+element.image}>     
-        `
-        slidesContainer.append(addedSlide)
-        addedSlide.classList.add('createdSlide')
-        addedSlide.style.display = 'none'
+         <img  src=${imagesUrl+element.image}>  
+         </div>   
+         `
+        slidesContainer.insertAdjacentElement( 'beforeend', addedSlide)
+        // addedSlide.classList.add('createdSlide')
     })
 
 }
