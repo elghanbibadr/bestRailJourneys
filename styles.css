@@ -1,0 +1,22 @@
+p{
+    color: white !important;
+    font-size: 1.2rem;
+}
+
+
+.createdSlide{
+    display: grid !important ;    
+    grid-template-columns: 1fr 1fr !important ;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+   /* display: flex !important;
+   
+   justify-content: space-between !important; */
+     gap: 2rem;  
+     text-align: left;
+   /* top: 16% !important; */
+   /* z-index: -999999;  */
+   /* float: left; */
+   }
+   
