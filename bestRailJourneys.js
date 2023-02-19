@@ -2,7 +2,7 @@
 const slideshow_topics_url = 'https://vs.contentportal.link/items/slideshow_topics';
 const slideshow_slides_url = 'https://vs.contentportal.link/items/slideshow_slides/';
 const imagesUrl='https://vs.contentportal.link/assets/'
-const slideOne = document.querySelector('.slide2');
+const slideTwo = document.querySelector('.slide2');
 const slidesContainer=document.querySelector('.slides')
 
 
@@ -26,12 +26,23 @@ const getSlideShowSlides = async () => {
 }
 
 
+// resauble function to add html to a slide according to slide element data
+const addHtmlToSlide=(element,slideName)=>{
+   return slideName.innerHTML= `<div class='createdSlide'>
+   <div>
+       <h3>${element.where}</h2>
+        <p >${element.content_text}</p>
+   </div>
+    <img  src=${imagesUrl+element.image}>  
+    </div>   
+    `
+}
 
-// lets create the 10 romantic place slide show
+
+// lets create BEST_RAIL_JOURNEYS  slide show
 const createSlideShow = async () => {
   // grab all the slides show topics
   const { data: slideShowsTopic } = await getSlideShowTopic()
-  console.log(slideShowsTopic)
   // get theBEST RAIL JOURNEYS  slideshow data
   const BEST_RAIL_JOURNEYS = slideShowsTopic[1]
   console.log(BEST_RAIL_JOURNEYS )
@@ -42,31 +53,20 @@ const createSlideShow = async () => {
   // filter the list of slidesshow to get only the slides relevent to 10 romantic places data
 const slideForTheCurrentSlidShow = slideShowSlides.filter(element => slideshow_slides.includes(element.id))
    slideForTheCurrentSlidShow.forEach((element,index) => { 
+    console.log(element)
     if (index===0) {
-        slideOne.id=element.id
-        console.log(slideOne)
-        slideOne.innerHTML=`<div class='createdSlide'>
-        <p >${element.content_text}</p>
-        <img  src=${imagesUrl+element.image}>  
-        </div>   
-        `
-       return
+        slideTwo.id=element.id
+      addHtmlToSlide(element,slideTwo)       
+       return;
     }
    
     const addedSlide=document.createElement('section');
-    addedSlide.id=element.id
-    addedSlide.innerHTML=`<div class='createdSlide'>
-         <p >${element.content_text}</p>
-         <img  src=${imagesUrl+element.image}>  
-         </div>   
-         `
+    addedSlide.id=element.id;
+    addHtmlToSlide(element,addedSlide)
         slidesContainer.insertAdjacentElement( 'beforeend', addedSlide)
-        // addedSlide.classList.add('createdSlide')
     })
 
 }
-
-
 
 
 createSlideShow()

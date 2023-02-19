@@ -1,5 +1,5 @@
 p{
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 .backgrounds{
@@ -11,10 +11,36 @@ p{
     align-items: center;
     justify-items: center;
     justify-content: center;
-     gap: 2rem;  
+      column-gap: 2rem !important;  
      text-align: left;
+     width: 100% !important; 
+   }
+
+   .reveal .controls{
+    color:white !important;
+   }
+
+   .reveal .progress{
+     color: white !important;
+   }
+
+   h3{
+    color: white !important;
+    font-weight: bold !important;
+   }
+   @media screen and (max-width: 768px) {
+       .createdSlide{
+        top: 0 !important;
+         transform: translateY(-190px) !important;
+        display: flex !important;
+        flex-direction: column;
+        width: 80%;
+        margin-inline: auto;
+       }
+       .createdSlide p{
+        font-size: 1.6rem !important;
+       }
+       
    }
    
    
-
-  
